@@ -1,10 +1,16 @@
 .main {
     height: max-content;
+    min-width: 1380px;
+}
+.header-banner {
+    background-image: url(../assets/background/banner_bg.png);
+    background-repeat: no-repeat;
+    background-size: cover;
+    background-position: 0 center;
 }
 .banner {
     height: 653px;
     position: relative;
-    background-color: #888;
     .basketball {
         width: 409px;
         position: absolute;
@@ -50,17 +56,36 @@
     }
 }
 .claim{
-   
+    background-image: url(../assets/background/bg.png);
+    background-repeat: no-repeat;
+    background-size: cover;
+    background-position: 0 center;
+    padding: 51px 0 90px 0;
+
     .claim-main{
         width: 1200px;
         height: 440px;
+        margin: 0 auto;
         background: rgba(0,0,0,0.5);
         border-radius: 40px;
-        margin: 51px auto 100px;
         padding: 51px 124px;
         display: flex;
         flex-direction: column;
         align-items: center;
+        position: relative;
+        .claim-ball1 {
+            position: absolute;
+            bottom: 0;
+            left: 0;
+            transform: translate(-35px, 5px);
+
+        }
+        .claim-ball2 {
+            position: absolute;
+            right: 0;
+            top: 0; 
+            transform: translate(74px, -12px);
+        }
         .claim-title {
             font-family: 'Luckiest Guy';
             font-style: normal;
@@ -157,5 +182,68 @@
 
             color: #FFFFFF;
         }
+    }
+}
+.what-airdrop {
+    padding: 112px 0 368px 0;
+    background-color: #161827;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    .airdrop-nft{
+       margin-bottom: 30px;
+        width: 258px;
+    }
+    .what-airdrop-title {
+        font-family: 'Roboto-Regular';
+        font-style: normal;
+        font-weight: 600;
+        font-size: 20px;
+        line-height: 24px;
+        text-align: center;
+        color: #FFFFFF; 
+        padding-bottom: 14px;
+    }
+    .what-airdrop-subtitle {
+        font-family: 'Roboto-Regular';
+        font-style: normal;
+        font-weight: 400;
+        font-size: 12px;
+        line-height: 24px;
+        /* or 200% */
+        
+        text-align: center;
+        
+        color: #FFFFFF; 
+        padding-bottom: 31px;
+    }
+    .what-airdrop-btn {
+        display: flex;
+        align-items: center;
+    }
+    .airdrop-btn {
+        width: 128px;
+        height: 42px;
+        display: flex;
+        align-items: center;
+        justify-content: center;
+        font-family: 'Roboto-Regular';
+        font-style: normal;
+        font-weight: 400;
+        font-size: 14px;
+        line-height: 24px;
+        box-sizing: border-box;
+        border-radius: 8px;
+        cursor: pointer;
+    }
+    .mint-btn {
+        background: #E6290E;
+        color: #FFFFFF;
+        margin-right: 24px;
+    }
+    .view-btn {
+        border: 2px solid #E6290E;
+        color: #E6290E;
+
     }
 }
