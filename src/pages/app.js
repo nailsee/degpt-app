@@ -12,9 +12,10 @@ import nft1 from '@/assets/background/nft.svg'
 
 const App = (props) => {
   return (
-    <section className={'main'}>
-      <div className='header-banner'>
+    <section className={'main'} id='home'>
         <Header />
+      <div className='header-banner'>
+
         <section className="banner">
           <img className="basketball" src={basketball} />
           <div className="banner-title">Co-built by AI creatures<br /> and our community</div>
@@ -22,7 +23,7 @@ const App = (props) => {
         </section>
       </div>
 
-      <section className="claim">
+      <section className="claim" id='airdrop'>
         <section className="claim-main">
           <img alt='claim-ball' className='claim-ball1' src={bg1} />
           <img alt='claim-ball' className='claim-ball2' src={bg2} />
@@ -47,14 +48,13 @@ AIDOGE tokens that have not been claimed within 31 days will be used for the Com
       </section>
       <section className='what-airdrop'>
         <img alt='nft' className='airdrop-nft' src={nft1} />
-        <div className='what-airdrop-title'>What is AIDOGE?</div>
+        {/* <div className='what-airdrop-title'>What is AIDOGE?</div>
         <div className='what-airdrop-subtitle'>AIDOGE is a deflationary token. It will be used by AIDOGE ecosystem applications. The total supply is 210,000,000,000,000,000 tokens. AIDOGE belongs to everyone in the Arbitrum<br /> community and is also a necessary key to unlock the future chapters of the AIDOGE story.<br />
 AIDOGE has a 15% burning tax, so adjusting your slippage tolerance to around 20% is suggested when buying/selling to ensure your successful transactions. Every time you buy<br /> AIDOGE, you will receive a Lucky Drop ticket with a chance to win an ARB prize based on the purchase amount. You can also stake your AIDOGE to earn more.</div>
         <div className='what-airdrop-btn'>
           <div className='airdrop-btn mint-btn'>Mint NFT</div>
           <div className='airdrop-btn view-btn'>Mint NFT</div>
-
-        </div>
+        </div> */}
       </section>
     </section>
   );

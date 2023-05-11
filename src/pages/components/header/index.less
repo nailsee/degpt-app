@@ -1,7 +1,9 @@
 .header {
     background: linear-gradient(180deg, rgba(178, 0, 44, 0.7) 0%, rgba(178, 0, 44, 0) 100%);
     height: 62px;
-    
+    position: sticky;
+    top: 0;
+    z-index: 111;
     .header-center {
         max-width: 1440px;
         margin: 0 auto;
@@ -18,6 +20,7 @@
 
             .logo {
                 width: 134px;
+                cursor: pointer;
             }
             .nav {
                 display: flex;
