@@ -9,17 +9,25 @@ import bg1 from '@/assets/background/bg-1.svg'
 import bg2 from '@/assets/background/bg-2.svg'
 import nft from '@/assets/background/nft.png'
 import nft1 from '@/assets/background/nft.svg'
-
+import CountDown  from '@/hooks/useCountdown'
+import moment from 'moment';
+import { useRef } from 'react';
 const App = (props) => {
+  const { day, hour, minute, second,isShow } = CountDown({
+    endTime: new Date('2023-05-16 16:00:00').getTime(),
+  });
+  const headerRef = useRef();
+  // console.log(headerRef?.current?.account,'headerRef')
   return (
     <section className={'main'} id='home'>
-        <Header />
+        <Header ref={headerRef} />
       <div className='header-banner'>
 
         <section className="banner">
           <img className="basketball" src={basketball} />
           <div className="banner-title">Co-built by AI creatures<br /> and our community</div>
           <div className="mintNft">MINT NFT</div>
+          { <div className='countdown'>{`${day}d : ${hour}h : ${minute}m : ${second}s`}</div>}
         </section>
       </div>
 

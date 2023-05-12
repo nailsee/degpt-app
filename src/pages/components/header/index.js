@@ -1,21 +1,30 @@
 import "./index.less";
 import { lazy, Suspense, useState, forwardRef, useImperativeHandle } from "react";
 import {message} from 'antd';
-import logo from '@/assets/logo.svg'
-const Header = (props) => {
+import logo from '@/assets/logo.svg';
+import {shortenAddress} from '@/utils/web3tools'
+const Header = forwardRef((props, ref) => {
   const [account, setAccount] = useState()
   const handleConnect = async () => {
-    if (typeof window.unisat === 'undefined') {
-      console.log('UniSat Wallet is installed!');
-      message.error('UniSat Wallet is unInstalled!')
+    if (typeof window.ethereum === 'undefined') {
+      message.error('MetaMask is unInstalled!');
       return;
     }
+ 
     try {
-      let accounts = await window.unisat.requestAccounts();
+      const accounts = await window.ethereum.request({ method: 'eth_requestAccounts' })
+      .catch((err) => {
+        if (err.code === 4001) {
+          // EIP-1193 userRejectedRequest error
+          // If this happens, the user rejected the connection request.
+          message.error(err.message);
+        } else {
+          console.error(err);
+        }
+      });
       setAccount(accounts[0])
-      console.log('connect success', accounts);
     } catch (e) {
-      message.error('connect failed')
+      // message.error('connect failed')
       console.log('connect failed');
     }
   }
@@ -27,6 +36,10 @@ const Header = (props) => {
         if(anchorElement) { anchorElement.scrollIntoView({block: 'start', behavior: 'smooth'}); }
     }
   }
+  useImperativeHandle(ref, () => ({
+    account,
+  }));
+
 
   return (
     <section className='header'>
@@ -39,10 +52,10 @@ const Header = (props) => {
               <li>Docs</li>
             </ul>
           </div>
-          <div onClick={handleConnect} className="header-right">Connect Wallet</div>
+          <div onClick={handleConnect} className="header-right">{account? shortenAddress(account):'Connect Wallet'}</div>
         </section>
     </section>
   );
-};
+});
 
 export default Header;
