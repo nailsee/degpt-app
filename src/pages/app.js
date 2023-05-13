@@ -87,8 +87,7 @@ AIDOGE tokens that have not been claimed within 31 days will be used for the Com
       <footer>
         <a href='https://twitter.com/AiBall_ai' target='_blank'><img alt='twitter' src={twitter} /></a>
         <a href='https://discord.gg/zC3qxXBDPa' target='_blank'><img alt='discord' src={discord} /></a>
-        <a><img alt='telegram' src={telegram} /></a>
-
+        {/* <a><img alt='telegram' src={telegram} /></a> */}
       </footer>
       <MintModal ref={mintModalRef} address={headerRef?.current?.address} />
     </section>
