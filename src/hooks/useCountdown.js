@@ -11,8 +11,9 @@ import moment from 'moment';
 
  useEffect(() => {
  
-     let sys_second = (endTime - new Date().getTime());
-     
+    //  let sys_second = (endTime - new Date().getTime());
+     let sys_second = endTime;
+
      const timerId = setInterval(() => {
          //防止倒计时出现负数
          if (sys_second > 1000) {
