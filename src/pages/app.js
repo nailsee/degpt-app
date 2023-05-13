@@ -13,8 +13,7 @@ import SwiperSlide from "@/pages/components/swiperSlide";
 import MintModal from "./components/mintModal";
 
 const App = () => {
-  const timeDeadline =
-    new Date("2023-05-16 16:00:00").getTime() - new Date().getTime();
+  const timeDeadline = new Date("2023-05-16 16:00:00").getTime() - new Date().getTime();
 
   const { day, hour, minute, second } = CountDown({
     // endTime: new Date('2023-05-16 16:00:00').getTime(),

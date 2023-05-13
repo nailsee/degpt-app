@@ -74,7 +74,11 @@ const MintModal = forwardRef((props, ref) => {
       setLoading(false);
       hideModal();
     } catch (err) {
-      message.error(err?.message);
+      if(err?.code === 4001) {
+        message.error(err?.message);
+      }else {
+        message.error("Mint Failed!");
+      }
       setLoading(false);
     }
   };
