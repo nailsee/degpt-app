@@ -8,19 +8,43 @@
       height: 70px;
       background: #202022;
       border-radius: 16px;
-      padding: 0 15px;
+      padding: 0 45px 0 15px;
       display: flex;
       align-items: center;
       margin: 0;
+      width: 100%;
       .ant-modal-title {
         color: #fff;
         // font-family: "ITF Devanagari";
         font-family: "Roboto-Regular";
-
         font-style: normal;
-        font-weight: 700;
+        font-weight: 600;
         font-size: 19px;
         color: #fefefe;
+        width: 100%;
+        .headerModal {
+          display: flex;
+          align-items: center;
+          justify-content: space-between;
+          .right {
+            font-family: "Luckiest Guy";
+            font-style: normal;
+            font-weight: 400;
+            font-size: 20px;
+            line-height: 20px;
+            /* identical to box height */
+            color: #fff;
+            display: flex;
+            align-items: center;
+
+            span {
+              color: #c4120d;
+            }
+            i {
+              padding: 0 3px;
+            }
+          }
+        }
       }
     }
     .ant-modal-close-x,
@@ -32,6 +56,7 @@
       justify-content: center;
       border-radius: 50%;
       top: 25px;
+      right: 11px;
     }
     .ant-modal-body {
       padding: 28px 18px 23px;
@@ -41,7 +66,7 @@
         justify-content: space-between;
         margin-bottom: 30px;
         span {
-        //   font-family: "ITF Devanagari";
+          //   font-family: "ITF Devanagari";
           font-family: "Roboto-Regular";
 
           font-style: normal;
@@ -77,10 +102,41 @@
       .amountTitle {
         margin-bottom: 7px;
       }
+      .amountBox {
+        display: flex;
+        justify-content: space-between;
+        align-items: center;
+        .amountBoxSpan {
+          font-family: "Roboto-Regular";
+          font-style: normal;
+          font-weight: 600;
+          font-size: 14px;
+          line-height: 20px;
+          /* identical to box height, or 143% */
+
+          display: flex;
+          align-items: center;
+
+          color: #c1c1c3;
+          margin-top: -20px;
+          &::after {
+            display: inline-block;
+            margin-inline-end: 4px;
+            color: #c4120d;
+            font-size: 12px;
+            font-family: SimSun, sans-serif;
+            line-height: 1;
+            content: "*";
+          }
+        }
+      }
+      // .ant-form-item {
+      //   margin-bottom: 0;
+      // }
       .inputNumber {
         border: 1px solid #36383a;
         border-radius: 8px;
-        height: 48px;
+        height: 34px;
         font-family: "DIN Alternate";
         font-style: normal;
         font-weight: 700;
@@ -106,25 +162,7 @@
           border: 0;
         }
       }
-      .desc {
-        font-family: "Roboto-Regular";
-        font-style: normal;
-        font-weight: 400;
-        font-size: 14px;
-        line-height: 20px;
-        /* identical to box height, or 143% */
-        margin: 0 auto;
-        display: flex;
-        align-items: center;
-        padding-bottom: 21px;
-        color: #c1c1c3;
-        width: fit-content;
 
-        span {
-          color: #c4120d;
-          padding: 0 3px;
-        }
-      }
       .mint-btn {
         height: 54px;
         width: 100%;
@@ -142,8 +180,37 @@
         /* identical to box height */
 
         text-align: center;
-        
+
         color: #000000;
+        margin-top: 15px;
+      }
+      .tip {
+        margin-top: 20px;
+        margin-bottom: 9px;
+        font-family: "Roboto-Regular";
+        font-style: normal;
+        font-weight: 400;
+        font-size: 12px;
+        line-height: 20px;
+        /* or 167% */
+
+        display: flex;
+        align-items: center;
+
+        color: #c1c1c3;
+      }
+      .each {
+        font-family: "Roboto-Regular";
+        font-style: normal;
+        font-weight: 600;
+        font-size: 16px;
+        line-height: 20px;
+        /* identical to box height, or 125% */
+
+        display: flex;
+        align-items: center;
+
+        color: #ffffff;
       }
     }
   }

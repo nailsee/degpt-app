@@ -12,6 +12,7 @@ import CountDown from '@/hooks/useCountdown';
 import { useRef } from 'react';
 import SwiperSlide from '@/pages/components/swiperSlide';
 import MintModal from './components/mintModal';
+import Tokenomics from './components/tokenomics'
 const App = () => {
   const timeDeadline = new Date('2023-05-16 16:00:00').getTime() - new Date().getTime();
 
@@ -53,7 +54,9 @@ const App = () => {
           {timeDeadline>=0 && <div className='countdown'>{`${day}d : ${hour}h : ${minute}m : ${second}s`}</div>}
         </section>
       </div>
-
+      <section className='what-airdrop'>
+        <SwiperSlide />
+      </section>
       <section className="claim" id='airdrop'>
         <section className="claim-main">
           <img alt='claim-ball' className='claim-ball1' src={bg1} />
@@ -81,9 +84,7 @@ AIDOGE tokens that have not been claimed within 31 days will be used for the Com
 
         </section>
       </section>
-      <section className='what-airdrop'>
-        <SwiperSlide />
-      </section>
+     <Tokenomics />
       <footer>
         <a href='https://twitter.com/AiBall_ai' target='_blank'><img alt='twitter' src={twitter} /></a>
         <a href='https://discord.gg/zC3qxXBDPa' target='_blank'><img alt='discord' src={discord} /></a>

@@ -9,10 +9,9 @@ import Web3 from "web3";
 import { formatterSum } from "@/utils/web3tools";
 
 const gasLimit = 3000000;
-
 const MintModal = forwardRef((props, ref) => {
   const { address } = props;
-  const [open, setOpen] = useState(false);
+  const [open, setOpen] = useState(true);
   const [form] = Form.useForm();
   const [loading, setLoading] = useState(false);
   const [MintedQuantity, setMintedQuantity] = useState();
@@ -26,7 +25,6 @@ const MintModal = forwardRef((props, ref) => {
       .getMintedQuantity(address)
       .call();
     setMintedQuantity(Number(getMintedQuantity) + 1);
-   
   };
 
   const hideModal = () => {
@@ -37,6 +35,18 @@ const MintModal = forwardRef((props, ref) => {
     showModal,
     hideModal,
   }));
+  const getPrice = (value) =>{
+    if(isNaN(value)) return '';
+    if(value>=0&&value<=1500) {
+      return 'free mint'
+    }else if(value>1500&&value<=5000) {
+      return '0.0005ETH'
+    }else if(value>5000&&value<=15000) {
+      return '0.00075ETH'
+    }else if(value>15000&&value<=30000) {
+      return '0.001ETH'
+    }
+  }
   const onFinish = async (values) => {
     window.web3 = new Web3(window.ethereum);
     setLoading(true);
@@ -60,20 +70,27 @@ const MintModal = forwardRef((props, ref) => {
         from: address,
         gasLimit,
       });
-      message.success('Mint Successful!')
+      message.success("Mint Successful!");
       setLoading(false);
-      hideModal()
-
+      hideModal();
     } catch (err) {
       message.error(err?.message);
       setLoading(false);
-
     }
   };
 
   return (
     <Modal
-      title="MINT NFT"
+      title={
+        <div className="headerModal">
+          <div className="left">MINT NFT</div>
+          <div className="right">
+            <span>{formatterSum(MintedQuantity)}</span>
+            <i>/</i>
+            {formatterSum(30000)}
+          </div>
+        </div>
+      }
       open={open}
       onCancel={hideModal}
       width={390}
@@ -82,40 +99,35 @@ const MintModal = forwardRef((props, ref) => {
       closeIcon={<img width={20} src={close} />}
     >
       <div className="public-sale">
-        <span>Public Sale: </span>
-        <span className="rightValue">0.0005ETH</span>
+        <span>Price: </span>
+        <span className="rightValue">{getPrice(MintedQuantity)}</span>
       </div>
-      <div className="public-sale amountTitle">
-        <span>Mint Amount </span>
-        <div>
-          <span className="mintAmount">{formatterSum(MintedQuantity)}</span>
-          <span className="line">/</span>
-          <span className="rightValue">{formatterSum(30000)}</span>
-        </div>
-      </div>
-
       <Form name="validate_other" onFinish={onFinish} form={form}>
-        <Form.Item
-          name="quantity"
-          rules={[{ required: true, message: "Please mint account" }]}
-        >
-          <InputNumber
-            controls={{
-              upIcon: <img src={upIcon} width={15} />,
-              downIcon: <img src={downIcon} width={15} />,
-            }}
-            min={0}
-            className="inputNumber"
-            style={{ width: "100%", color: "#FFF" }}
-            formatter={(value) =>
-              `${value}`.replace(/\B(?=(\d{3})+(?!\d))/g, ",")
-            }
-            parser={(value) => value.replace(/\$\s?|(,*)/g, "")}
-          />
-        </Form.Item>
-        <div className="desc">
-          The first <span>1500</span> NFTs will be minted for free.
+        <div className="amountBox">
+          <span className="amountBoxSpan">Amount</span>
+          <Form.Item
+            name="quantity"
+            // label='Amount'
+            rules={[{ required: true, message: "Please Enter" }]}
+          >
+            <InputNumber
+              controls={{
+                upIcon: <img src={upIcon} width={15} />,
+                downIcon: <img src={downIcon} width={15} />,
+              }}
+              min={1}
+              max={15}
+              maxLength={2}
+              className="inputNumber"
+              style={{ width: "95px", color: "#FFF" }}
+              formatter={(value) =>
+                `${value}`.replace(/\B(?=(\d{3})+(?!\d))/g, ",")
+              }
+              parser={(value) => value.replace(/\$\s?|(,*)/g, "")}
+            />
+          </Form.Item>
         </div>
+
         <Button
           loading={loading}
           className="mint-btn"
@@ -124,6 +136,16 @@ const MintModal = forwardRef((props, ref) => {
         >
           MINT NFT
         </Button>
+        <div className="tip">
+          1~1500, free mint
+          <br />
+          1501~5000, 0.0005 ETH per NFT
+          <br />
+          5,001~15,000, 0.00075ETH per NFT
+          <br />
+          15,001~30000, 0.001ETH per NFT
+        </div>
+        <div className="each">Each address can mint up to 15 NFTs</div>
       </Form>
     </Modal>
   );
