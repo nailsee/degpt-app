@@ -6,7 +6,7 @@ import {shortenAddress} from '@/utils/web3tools'
 const Header = forwardRef((props, ref) => {
   const [address, setAddress] = useState()
   useEffect(()=>{
-    console.log(window.ethereum?.selectedAddress,'window.ethereum?.selectedAddress')
+    console.log(window.ethereum,'window.ethereum?.selectedAddress')
     if(window.ethereum?.selectedAddress) {
       injectWallet()
     }
@@ -15,36 +15,64 @@ const Header = forwardRef((props, ref) => {
 		let ethereum = window.ethereum
 		if (ethereum) {
       try{
-        const reqAccounts = await window.ethereum.request({ method: 'eth_requestAccounts' })
-        .catch((err) => {
-          if (err.code === 4001) {
-            // EIP-1193 userRejectedRequest error
-            // If this happens, the user rejected the connection request.
-            message.error(err.message);
-          } else {
-            console.error(err);
-          }
-        });
-        setAddress(reqAccounts[0])
+        const chainId = await ethereum.request({ method: "eth_chainId" });
+        // arb的测试网
+        if(chainId === '0x66eed') {
+          const reqAccounts = await window.ethereum.request({
+            method: 'eth_requestAccounts',
+            params: [
+              {
+                chainId: '0x66eed',
+            }],
+           })
+          .catch((err) => {
+            if (err.code === 4001) {
+              // EIP-1193 userRejectedRequest error
+              // If this happens, the user rejected the connection request.
+              message.error(err.message);
+            } else {
+              console.error(err);
+            }
+          });
+          console.log(reqAccounts,'reqAccounts')
+          setAddress(reqAccounts[0])
+        }else {
+          await window.ethereum.request({
+            method: 'wallet_addEthereumChain',
+            params: [
+              {
+                chainId: '0x66eed',
+                chainName: 'Arbitrum Goerli Testnet',
+                nativeCurrency: {
+                  name: 'ETH',
+                  symbol: 'eth',
+                  decimals: 18,
+                },
+                rpcUrls: ['https://goerli-rollup.arbitrum.io/rpc'],
+              },
+            ],
+             })
+        }
+                console.log(chainId, '42134')
+       
 
       }catch{
-        message.error('Connect failed!');
+        // message.error('Connect failed!');
 
       }
         
 			//  监听节点切换
 			ethereum.on('chainChanged', (chainId) => {
-				window.location.reload()
+				window.location.reload() 
 			})
 			// 监听网络切换
 			ethereum.on('networkChanged', (networkIDstring) => {
-      console.log(networkIDstring,'networkIDstring')
+        console.log(networkIDstring,'networkIDstring')
 			})
 		
 			// 监听账号切换
 			ethereum.on('accountsChanged', (accounts) => {
         setAddress(accounts[0])
-
 			})
 		}
 	}, [address])
