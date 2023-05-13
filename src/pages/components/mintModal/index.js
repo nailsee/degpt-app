@@ -11,7 +11,7 @@ import { formatterSum } from "@/utils/web3tools";
 const gasLimit = 3000000;
 const MintModal = forwardRef((props, ref) => {
   const { address } = props;
-  const [open, setOpen] = useState(true);
+  const [open, setOpen] = useState(false);
   const [form] = Form.useForm();
   const [loading, setLoading] = useState(false);
   const [MintedQuantity, setMintedQuantity] = useState();

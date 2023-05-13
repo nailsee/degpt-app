@@ -1,314 +1,306 @@
 .main {
-    height: max-content;
-    min-width: 1380px;
+  height: max-content;
+  min-width: 1380px;
 }
 .header-banner {
-    background-image: url(../assets/background/banner_bg.png);
-    background-repeat: no-repeat;
-    background-size: cover;
-    background-position: 0 center;
-    margin-top: -62px;
+  background-image: url(../assets/background/banner_bg.png);
+  background-repeat: no-repeat;
+  background-size: cover;
+  background-position: 0 center;
+  margin-top: -62px;
 }
 .banner {
-    height: 653px;
-    position: relative;
+  height: 653px;
+  position: relative;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  .basketball {
+    width: 409px;
+    position: absolute;
+    top: 50%;
+    left: 50%;
+
+    transform: translate(-50%, -50%);
+  }
+  .banner-title {
+    font-family: "Luckiest Guy";
+    font-style: normal;
+    font-weight: 400;
+    font-size: 70px;
+    line-height: 90px;
+    text-align: center;
+    text-transform: lowercase;
+    color: #ffffff;
+    padding-top: 206px;
+    padding-bottom: 86px;
+    position: inherit;
+    z-index: 99;
+  }
+  .mintNft {
+    width: 202px;
+    height: 54px;
+    border: 5px solid #000;
+    font-family: "Luckiest Guy";
+    font-style: normal;
+    font-weight: 400;
+    font-size: 24px;
+    line-height: 24px;
+    background-color: #fff;
+    margin: 0 auto;
+    text-align: center;
+    position: inherit;
+    z-index: 99;
+    color: #000000;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    border-radius: 8px;
+    cursor: pointer;
+    &:hover {
+      background-color: #fff;
+      color: #000000;
+    }
+  }
+}
+.claim {
+  background-image: url(../assets/background/bg.png);
+  background-repeat: no-repeat;
+  background-size: cover;
+  background-position: 0 center;
+  padding: 51px 0 90px 0;
+
+  .claim-main {
+    width: 1200px;
+    height: 440px;
+    margin: 0 auto;
+    background: rgba(0, 0, 0, 0.5);
+    border-radius: 40px;
+    padding: 51px 0;
     display: flex;
     flex-direction: column;
     align-items: center;
-    .basketball {
-        width: 409px;
-        position: absolute;
-        top: 50%;
-        left: 50%;
-
-        transform: translate(-50%, -50%)
+    position: relative;
+    .claim-ball1 {
+      position: absolute;
+      bottom: 0;
+      left: 0;
+      transform: translate(-35px, 5px);
     }
-    .banner-title {
-        font-family: 'Luckiest Guy';
-        font-style: normal;
-        font-weight: 400;
-        font-size: 70px;
-        line-height: 90px;
-        text-align: center;
-        text-transform: lowercase;
-        color: #FFFFFF;
-        padding-top: 206px;
-        padding-bottom: 86px;
-        position: inherit;
-        z-index: 99;
+    .claim-ball2 {
+      position: absolute;
+      right: 0;
+      top: 0;
+      transform: translate(74px, -12px);
     }
-    .mintNft {
-        width: 202px;
-        height: 54px;
-        border: 5px solid #000;
-        font-family: 'Luckiest Guy';
-        font-style: normal;
-        font-weight: 400;
-        font-size: 24px;
-        line-height: 24px;
-        background-color: #fff;
-        margin: 0 auto;
-        text-align: center;
-        position: inherit;
-        z-index: 99;
-        color: #000000;
-        display: flex;
-        align-items: center;
-        justify-content: center;
-        border-radius: 8px;
-        cursor: pointer;
-        &:hover {
-            background-color: #fff;
-            color: #000000;
-
-        }
+    .claim-title {
+      font-family: "Luckiest Guy";
+      font-style: normal;
+      font-weight: 400;
+      font-size: 40px;
+      line-height: 40px;
+      /* identical to box height, or 100% */
+      text-align: center;
+      text-transform: lowercase;
+      color: #ffffff;
     }
-}
-.claim{
-    background-image: url(../assets/background/bg.png);
-    background-repeat: no-repeat;
-    background-size: cover;
-    background-position: 0 center;
-    padding: 51px 0 90px 0;
-
-    .claim-main{
-        width: 1200px;
-        height: 440px;
-        margin: 0 auto;
-        background: rgba(0,0,0,0.5);
-        border-radius: 40px;
-        padding: 51px 124px;
-        display: flex;
-        flex-direction: column;
-        align-items: center;
-        position: relative;
-        .claim-ball1 {
-            position: absolute;
-            bottom: 0;
-            left: 0;
-            transform: translate(-35px, 5px);
-
-        }
-        .claim-ball2 {
-            position: absolute;
-            right: 0;
-            top: 0; 
-            transform: translate(74px, -12px);
-        }
-        .claim-title {
-            font-family: 'Luckiest Guy';
-            font-style: normal;
-            font-weight: 400;
-            font-size: 40px;
-            line-height: 40px;
-            /* identical to box height, or 100% */
-            text-align: center;
-            text-transform: lowercase;
-            color: #FFFFFF;
-        }
-        .claim-during {
-            font-family: 'Roboto-Regular';
-            font-style: normal;
-            font-weight: 400;
-            font-size: 14px;
-            line-height: 24px;
-            /* identical to box height, or 171% */
-            text-align: center;
-            color: #FFFFFF;
-            margin-top: 8px;
-            margin-bottom: 28px;
-        }
-        .claim-desc {
-            font-family: 'Roboto';
-            font-style: normal;
-            font-weight: 500;
-            font-size: 16px;
-            line-height: 24px;
-            /* or 150% */
-            text-align: center;
-            color: #FFFFFF;
-            margin-bottom: 54px;
-            span {
-                color: #E6290E;
-            }
-        }
-        .claim-airdrop-desc {
-            width: 764px;
-            margin-bottom: 10px;
-            display: flex;
-            align-items: center;
-            justify-content: space-between;
-            .claim-airdrop-desc-left{
-                font-family: 'Roboto-Regular';
-                font-style: normal;
-                font-weight: 400;
-                font-size: 14px;
-                line-height: 24px;
-                /* identical to box height, or 171% */
-
-                text-align: center;
-
-                color: #FFFFFF;
-                span {
-                    opacity: 0.5;
-
-                }
-            }
-            .claim-airdrop-desc-right {
-                font-family: 'Roboto-Regular';
-                font-style: normal;
-                font-weight: 600;
-                font-size: 14px;
-                line-height: 24px;
-                /* identical to box height, or 171% */
-
-                text-align: center;
-
-                color: #E6290E;
-                span {
-                    font-weight: 400;
-
-                    color: #FFFFFF;
-                    opacity: 0.5;
-                }
-            }
-        }
-        .airdrop-btn {
-            background: #393B4A;
-            border: 2px solid #FFFFFF;
-            border-radius: 14px;
-            width: 764px;
-            height: 60px;
-            color: #fff;
-            padding-left: 26px;
-            padding-right: 148px;
-            font-family: 'Luckiest Guy';
-            font-style: normal;
-            font-weight: 400;
-            font-size: 30px;
-            line-height: 30px;
-            text-transform: lowercase;
-
-            color: #FFFFFF;
-        }
+    .claim-during {
+      height: 28px;
+      background: #e6290e;
+      border-radius: 6px;
+      padding: 0 13px;
+      font-family: "Roboto-Regular";
+      font-style: normal;
+      font-weight: 400;
+      font-size: 14px;
+      line-height: 28px;
+      /* identical to box height, or 171% */
+      text-align: center;
+      color: #ffffff;
+      margin-top: 8px;
+      margin-bottom: 57px;
     }
+    .claim-invite {
+      font-family: "Roboto-bold";
+      font-style: normal;
+      font-weight: 700;
+      font-size: 20px;
+      line-height: 24px;
+      /* identical to box height, or 120% */
+      padding-bottom: 20px;
+      color: #ffffff;
+      span {
+        color: #e6290e;
+      }
+    }
+    .claim-desc {
+      font-family: "Roboto-Regular";
+      font-style: normal;
+      font-weight: 500;
+      font-size: 16px;
+      line-height: 24px;
+      /* or 150% */
+      text-align: center;
+      color: #a2a3a9;
+      margin-bottom: 37px;
+      span {
+        color: #e6290e;
+      }
+    }
+
+    .airdrop-btn {
+      background: #e6290e;
+      border: 0;
+      border-radius: 8px;
+      width: 138px;
+      height: 42px;
+      font-family: "Roboto-Regular";
+      font-style: normal;
+      font-weight: 400;
+      font-size: 14px;
+      line-height: 24px;
+      /* identical to box height, or 171% */
+      
+      text-align: center;
+      
+      color: #FFFFFF;
+      margin-right: 34px;
+      &:last-child {
+        mask-repeat: 0;
+      }
+    }
+  }
 }
 .what-airdrop {
-    padding: 113px 0 112px 0;
-    background-color: #161827;
+  height: 663px;
+  padding-top: 67px;
+  //   padding: 113px 0 112px 0;
+  background-color: #161827;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  .airdrop-nft {
+    margin-bottom: 30px;
+    width: 258px;
+  }
+  .what-airdrop-title {
+    font-family: "Roboto-Regular";
+    font-style: normal;
+    font-weight: 600;
+    font-size: 20px;
+    line-height: 24px;
+    text-align: center;
+    color: #ffffff;
+    padding-bottom: 14px;
+  }
+  .what-airdrop-subtitle {
+    font-family: "Roboto-Regular";
+    font-style: normal;
+    font-weight: 400;
+    font-size: 12px;
+    line-height: 24px;
+    /* or 200% */
+
+    text-align: center;
+
+    color: #ffffff;
+    padding-bottom: 31px;
+  }
+  .what-airdrop-btn {
     display: flex;
-    flex-direction: column;
     align-items: center;
-    .airdrop-nft{
-       margin-bottom: 30px;
-        width: 258px;
-    }
-    .what-airdrop-title {
-        font-family: 'Roboto-Regular';
-        font-style: normal;
-        font-weight: 600;
-        font-size: 20px;
-        line-height: 24px;
-        text-align: center;
-        color: #FFFFFF; 
-        padding-bottom: 14px;
-    }
-    .what-airdrop-subtitle {
-        font-family: 'Roboto-Regular';
-        font-style: normal;
-        font-weight: 400;
-        font-size: 12px;
-        line-height: 24px;
-        /* or 200% */
-        
-        text-align: center;
-        
-        color: #FFFFFF; 
-        padding-bottom: 31px;
-    }
-    .what-airdrop-btn {
-        display: flex;
-        align-items: center;
-    }
-    
-    .airdrop-btn {
-        width: 128px;
-        height: 42px;
-        display: flex;
-        align-items: center;
-        justify-content: center;
-        font-family: 'Roboto-Regular';
-        font-style: normal;
-        font-weight: 400;
-        font-size: 14px;
-        line-height: 24px;
-        box-sizing: border-box;
-        border-radius: 8px;
-        cursor: pointer;
-    }
-    .mint-btn {
+  }
 
-        
-        background: #E6290E;
-        color: #FFFFFF;
-        margin-right: 24px;
-    }
-    .view-btn {
-        border: 2px solid #E6290E;
-        color: #E6290E;
-
-    }
+  .airdrop-btn {
+    width: 128px;
+    height: 42px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    font-family: "Roboto-Regular";
+    font-style: normal;
+    font-weight: 400;
+    font-size: 14px;
+    line-height: 24px;
+    box-sizing: border-box;
+    border-radius: 8px;
+    cursor: pointer;
+  }
+  .mint-btn {
+    background: #e6290e;
+    color: #ffffff;
+    margin-right: 24px;
+  }
+  .view-btn {
+    border: 2px solid #e6290e;
+    color: #e6290e;
+  }
 }
-.airdrop-btn-input{
-    position: relative;
-    .btn {
-        position: absolute;
-        top: 9px;
-        right: 10px;
-        width: 128px;
-        height: 42px;
-        font-family: 'Roboto';
-        font-style: normal;
-        font-weight: 400;
-        font-size: 14px;
-        line-height: 24px;
-        text-align: center;
-        color: #FFFFFF;
-        border-radius: 8px;
-        display: flex;
-        justify-content: center;
-        align-items: center;
-        background-color: #E6290E;
-        cursor: pointer;
-    }
-}
-.countdown {
-    margin-top: 12px;
-    width: 205px;
-    height: 45px;
-    background: #000000;
+.airdrop-btn-input {
+  position: relative;
+  .btn {
+    position: absolute;
+    top: 9px;
+    right: 10px;
+    width: 128px;
+    height: 42px;
+    font-family: "Roboto";
+    font-style: normal;
+    font-weight: 400;
+    font-size: 14px;
+    line-height: 24px;
+    text-align: center;
+    color: #ffffff;
     border-radius: 8px;
     display: flex;
-    align-items: center;
     justify-content: center;
-    font-family: 'Roboto-Regular';
-    font-style: normal;
-    font-weight: 700;
-    font-size: 20px;
-    text-align: center;
-    color: #FFFFFF;
+    align-items: center;
+    background-color: #e6290e;
+    cursor: pointer;
+  }
+}
+.countdown {
+  margin-top: 12px;
+  width: 205px;
+  height: 45px;
+  background: #000000;
+  border-radius: 8px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  font-family: "Roboto-Regular";
+  font-style: normal;
+  font-weight: 700;
+  font-size: 20px;
+  text-align: center;
+  color: #ffffff;
 }
 footer {
-    display: flex;
-    align-items: center;
-    justify-content: center;
-    height: 121px;
-    background: #000000;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  height: 121px;
+  background: #000000;
+  position: relative;
+  .trust {
+    position: absolute;
+    top: 50px;
+    left: 84px;
+    font-family: "Noto Sans";
+    font-style: normal;
+    font-weight: 500;
+    font-size: 16px;
+    line-height: 22px;
+    /* identical to box height */
+
+    color: rgba(255, 255, 255, 0.6);
+  }
+  a {
     cursor: pointer;
-    a {
-        margin-right: 40px;
-        img {
-            width: 40px;
-        }
+
+    margin-right: 40px;
+    img {
+      width: 40px;
     }
+  }
 }
