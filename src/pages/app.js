@@ -94,7 +94,7 @@ const App = () => {
       <TokenSupply />
       <RoadMap />
       <FooterBox />
-      <MintModal ref={mintModalRef} address={headerRef?.current?.address} />
+      <MintModal ref={mintModalRef} address={headerRef?.current?.address} chainId={headerRef?.current?.chainId} />
     </section>
   );
 };

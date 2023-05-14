@@ -7,23 +7,34 @@ import "./index.less";
 import { Button, Form, InputNumber, message, Modal } from "antd";
 import Web3 from "web3";
 import { formatterSum } from "@/utils/web3tools";
+import {tokenContract} from '@/utils/constant'
+import {netWorkList} from '@/utils/constant' 
 
 const gasLimit = 3000000;
 const MintModal = forwardRef((props, ref) => {
-  const { address } = props;
+  const { address, chainId } = props;
   const [open, setOpen] = useState(false);
   const [form] = Form.useForm();
   const [loading, setLoading] = useState(false);
   const [MintedQuantity, setMintedQuantity] = useState();
   const showModal = async () => {
+    if(!address) {
+      message.warning('Please Connect Wallet')
+      return
+    }else if(netWorkList.testnet.chainId!==chainId) {
+      message.error('Wrong network')
+      return
+    }
     setOpen(true);
-    const contract = "0xD5529F5956eC381F336Ed3b287daFE6a3b277E4f";
     window.web3 = new Web3(window.ethereum);
+    
+    const mintContract = new window.web3.eth.Contract(mintNFTAbi, tokenContract.testnet);
+    console.log({mintContract})
 
-    const mintContract = new window.web3.eth.Contract(mintNFTAbi, contract);
     let getMintedQuantity = await mintContract.methods
       .getMintedQuantity(address)
       .call();
+      console.log({getMintedQuantity,mintContract})
     setMintedQuantity(Number(getMintedQuantity) + 1);
   };
 
@@ -35,32 +46,30 @@ const MintModal = forwardRef((props, ref) => {
     showModal,
     hideModal,
   }));
-  const getPrice = (value) =>{
-    if(isNaN(value)) return '';
-    if(value>=0&&value<=1500) {
-      return 'free mint'
-    }else if(value>1500&&value<=5000) {
-      return '0.0005ETH'
-    }else if(value>5000&&value<=15000) {
-      return '0.00075ETH'
-    }else if(value>15000&&value<=30000) {
-      return '0.001ETH'
+  const getPrice = (value) => {
+    if (isNaN(value)) return "";
+    if (value >= 0 && value <= 1500) {
+      return "free mint";
+    } else if (value > 1500 && value <= 5000) {
+      return "0.0005ETH";
+    } else if (value > 5000 && value <= 15000) {
+      return "0.00075ETH";
+    } else if (value > 15000 && value <= 30000) {
+      return "0.001ETH";
     }
-  }
+  };
   const onFinish = async (values) => {
     window.web3 = new Web3(window.ethereum);
     setLoading(true);
     try {
-      const contract = "0xD5529F5956eC381F336Ed3b287daFE6a3b277E4f";
-      const mintContract = new window.web3.eth.Contract(mintNFTAbi, contract);
-      console.log({ address, contract, mintContract });
+      const mintContract = new window.web3.eth.Contract(mintNFTAbi, tokenContract.testnet);
 
       let isApproved = await mintContract.methods
-        .isApprovedForAll(address, contract)
+        .isApprovedForAll(address, tokenContract.testnet)
         .call();
       console.log(isApproved, "isApprovedisApprovedisApproved");
       if (!isApproved) {
-        await mintContract.methods.setApprovalForAll(contract, true).send({
+        await mintContract.methods.setApprovalForAll(tokenContract.testnet, true).send({
           from: address,
           gasLimit,
         });
@@ -74,9 +83,9 @@ const MintModal = forwardRef((props, ref) => {
       setLoading(false);
       hideModal();
     } catch (err) {
-      if(err?.code === 4001) {
+      if (err?.code === 4001) {
         message.error(err?.message);
-      }else {
+      } else {
         message.error("Mint Failed!");
       }
       setLoading(false);
