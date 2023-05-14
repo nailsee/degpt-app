@@ -7,8 +7,9 @@ import "./index.less";
 import { Button, Form, InputNumber, message, Modal } from "antd";
 import Web3 from "web3";
 import { formatterSum } from "@/utils/web3tools";
-import {tokenContract} from '@/utils/constant'
-import {netWorkList} from '@/utils/constant' 
+import { tokenContract } from "@/utils/constant";
+import { netWorkList } from "@/utils/constant";
+// import {fromWei} from 'web3-utils'
 
 const gasLimit = 3000000;
 const MintModal = forwardRef((props, ref) => {
@@ -17,24 +18,50 @@ const MintModal = forwardRef((props, ref) => {
   const [form] = Form.useForm();
   const [loading, setLoading] = useState(false);
   const [MintedQuantity, setMintedQuantity] = useState();
+  const [quantity, setQuantity] = useState({
+    minted: "", // 已minted的数据
+    totalSupply: "", // 所有数量
+    totalCost: "", // 总成本
+  });
   const showModal = async () => {
-    if(!address) {
-      message.warning('Please Connect Wallet')
-      return
-    }else if(netWorkList.testnet.chainId!==chainId) {
-      message.error('Wrong network')
-      return
+    if (!address) {
+      message.warning("Please Connect Wallet");
+      return;
+    } else if (netWorkList.testnet.chainId !== chainId) {
+      message.error("Wrong network");
+      return;
     }
     setOpen(true);
     window.web3 = new Web3(window.ethereum);
-    
-    const mintContract = new window.web3.eth.Contract(mintNFTAbi, tokenContract.testnet);
-    console.log({mintContract})
+
+    const mintContract = new window.web3.eth.Contract(
+      mintNFTAbi,
+      tokenContract.testnet
+    );
 
     let getMintedQuantity = await mintContract.methods
       .getMintedQuantity(address)
       .call();
-      console.log({getMintedQuantity,mintContract})
+
+    let getTotalCost = await mintContract.methods
+      .getTotalCost(getMintedQuantity)
+      .call();
+
+    let totalSupply = await mintContract.methods.totalSupply().call();
+
+    setQuantity({
+      minted: getMintedQuantity,
+      totalSupply: totalSupply,
+      totalCost: getTotalCost,
+      total: Web3.utils.fromWei(String(getTotalCost), "ether"),
+    });
+
+    console.log({
+      minted: getMintedQuantity,
+      totalSupply: getTotalCost,
+      totalCost: totalSupply,
+      total: Web3.utils.fromWei(String(getTotalCost), "ether"),
+    });
     setMintedQuantity(Number(getMintedQuantity));
   };
 
@@ -48,36 +75,37 @@ const MintModal = forwardRef((props, ref) => {
   }));
   const getPrice = (value) => {
     if (isNaN(value)) return "";
-    if (value >= 0 && value <= 1500) {
+    if (Number(value) === 0) {
       return "free mint";
-    } else if (value > 1500 && value <= 5000) {
-      return "0.0005ETH";
-    } else if (value > 5000 && value <= 15000) {
-      return "0.00075ETH";
-    } else if (value > 15000 && value <= 30000) {
-      return "0.001ETH";
+    } else {
+      return `${value}ETH`;
     }
   };
   const onFinish = async (values) => {
     window.web3 = new Web3(window.ethereum);
     setLoading(true);
     try {
-      const mintContract = new window.web3.eth.Contract(mintNFTAbi, tokenContract.testnet);
+      const mintContract = new window.web3.eth.Contract(
+        mintNFTAbi,
+        tokenContract.testnet
+      );
 
       let isApproved = await mintContract.methods
         .isApprovedForAll(address, tokenContract.testnet)
         .call();
-      console.log(isApproved, "isApprovedisApprovedisApproved");
       if (!isApproved) {
-        await mintContract.methods.setApprovalForAll(tokenContract.testnet, true).send({
-          from: address,
-          gasLimit,
-        });
+        await mintContract.methods
+          .setApprovalForAll(tokenContract.testnet, true)
+          .send({
+            from: address,
+            gasLimit,
+          });
       }
 
       await mintContract.methods.mint(values.quantity).send({
         from: address,
         gasLimit,
+        value: quantity.totalCost,
       });
       message.success("Mint Successful!");
       setLoading(false);
@@ -98,9 +126,9 @@ const MintModal = forwardRef((props, ref) => {
         <div className="headerModal">
           <div className="left">MINT NFT</div>
           <div className="right">
-            <span>{formatterSum(MintedQuantity)}</span>
+            <span>{formatterSum(quantity.minted)}</span>
             <i>/</i>
-            {formatterSum(30000)}
+            {formatterSum(quantity.totalSupply)}
           </div>
         </div>
       }
@@ -113,7 +141,7 @@ const MintModal = forwardRef((props, ref) => {
     >
       <div className="public-sale">
         <span>Price: </span>
-        <span className="rightValue">{getPrice(MintedQuantity)}</span>
+        <span className="rightValue">{getPrice(quantity.total)}</span>
       </div>
       <Form name="validate_other" onFinish={onFinish} form={form}>
         <div className="amountBox">

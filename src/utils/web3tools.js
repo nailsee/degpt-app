@@ -3,6 +3,6 @@ export const shortenAddress = (address, chars = 6) => {
 }
 
 export const formatterSum = (value) => {
-	if(isNaN(value)) return value;
+	if(isNaN(value)) return '';
 	return `${value}`.replace(/\B(?=(\d{3})+(?!\d))/g, ",")
 }

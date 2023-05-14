@@ -20,14 +20,7 @@ const App = () => {
   });
   const headerRef = useRef();
   const mintModalRef = useRef();
-  const handleAirdrop = () => {
-    if (!headerRef?.current?.address) {
-      headerRef.current.injectWallet();
-      return;
-    } else {
-      console.log(headerRef?.current?.address);
-    }
-  };
+ 
   const handleMintNft = () => {
     // if(timeDeadline >=0) return;
     mintModalRef.current.showModal();
