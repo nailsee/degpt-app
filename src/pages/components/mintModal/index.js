@@ -35,7 +35,7 @@ const MintModal = forwardRef((props, ref) => {
       .getMintedQuantity(address)
       .call();
       console.log({getMintedQuantity,mintContract})
-    setMintedQuantity(Number(getMintedQuantity) + 1);
+    setMintedQuantity(Number(getMintedQuantity));
   };
 
   const hideModal = () => {
