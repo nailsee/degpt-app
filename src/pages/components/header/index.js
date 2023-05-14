@@ -127,7 +127,8 @@ const Header = forwardRef((props, ref) => {
           <ul className="nav">
             <li onClick={() => scrollToAnchor("home")}>Home</li>
             <li onClick={() => scrollToAnchor("airdrop")}>Airdrop</li>
-            <li>Docs</li>
+            <li onClick={() => scrollToAnchor("tokenomics")}>Tokenomics</li>
+            <li onClick={() => scrollToAnchor("roadmap")}>RoadMap</li>
           </ul>
         </div>
         <Button type="primary" onClick={handleConnect} className="header-right">

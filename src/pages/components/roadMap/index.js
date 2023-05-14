@@ -33,7 +33,7 @@ const RoadMap = (props) => {
     },
   ];
   return (
-    <div className="roadmap">
+    <div className="roadmap" id='roadmap'>
       <div className="title">ROADMAP</div>
       <div className="subtitle">let's play a 3 game series</div>
       <div className="roadmap-card">
