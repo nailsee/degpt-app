@@ -40,7 +40,7 @@ export default function App() {
     });
   }, []);
   return (
-    <>
+    <div className="swiper-box">
       <div id="certify">
         <div className="swiper-container">
           <div className="swiper-wrapper">
@@ -138,6 +138,6 @@ export default function App() {
           <img src={rightIcon} />
         </div>
       </div>
-    </>
+    </div>
   );
 }
