@@ -1,5 +1,5 @@
-import React from "react";
-import { Button, Input } from "antd";
+import React, { useEffect, useState } from "react";
+import { Button, Input, message } from "antd";
 import bg1 from "@/assets/background/bg-1.svg";
 import bg2 from "@/assets/background/bg-2.svg";
 import axios from "axios";
@@ -7,12 +7,44 @@ import { post } from "@/utils/request";
 import "./index.less";
 const Airdrop = (props) => {
   const { address } = props;
-  const handleInvite = async () => {
-    console.log(address, "address");
-    const result = await post("/inviteAuth", {address });
-    const result1 = await post("/GetInviteCode", {address });
 
-    console.log(result,result1, "result");
+  const [inviteAuth, setInviteAuth] = useState(false);
+  const [inviteCode, setInviteCode] = useState();
+
+  useEffect(() => {
+    if (address) getInviteAuth();
+  }, [address]);
+  const getInviteAuth = async () => {
+    const getInviteAuth = await post("/inviteAuth", { address });
+    if (getInviteAuth?.status === 200 && getInviteAuth?.data?.data) {
+      setInviteAuth(true);
+    }
+  };
+  const handleInvite = async () => {
+    const GetInviteCode = await post("/GetInviteCode", { address });
+    if (GetInviteCode?.status === 200) {
+      setInviteCode(GetInviteCode?.data?.data);
+      console.log(GetInviteCode?.data?.data, "GetInviteCode?.data?.data");
+    }
+  };
+  const handleClaim = async () => {
+    if(!address) {
+        message.error('Please connect wallet')
+        return
+    }
+    const claimStatus = await post("/claimStatus", { address });
+    if (claimStatus.status === 200) {
+      console.log(inviteCode, claimStatus?.data, "inviteCode");
+        
+      if (claimStatus?.data?.data) {
+        message.info("Has been claimed successfully");
+        return;
+      }
+      if (!claimStatus?.data?.data && inviteCode) {
+        const claim = await post("/claim", { address, code: inviteCode });
+        if (claim?.data) message.success("Claim Successful");
+      }
+    }
   };
   return (
     <section className="claim" id="airdrop">
@@ -39,8 +71,14 @@ const Airdrop = (props) => {
           who have invited >1
         </div>
         <div className="claim-btn">
-          <Button className="airdrop-btn">Claim</Button>
-          <Button onClick={handleInvite} className="airdrop-btn">
+          <Button onClick={handleClaim} className="airdrop-btn">
+            Claim
+          </Button>
+          <Button
+            disabled={!inviteAuth}
+            onClick={handleInvite}
+            className="airdrop-btn"
+          >
             Invite friends
           </Button>
         </div>
