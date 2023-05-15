@@ -12,7 +12,7 @@ import MintModal from "./components/mintModal";
 import Airdrop from "./components/aridrop";
 const App = () => {
   const timeDeadline =
-    new Date("2023-05-16 16:00:00").getTime() - new Date().getTime();
+    new Date("2023-05-18 16:00:00").getTime() - new Date().getTime();
 
   const { day, hour, minute, second } = CountDown({
     // endTime: new Date('2023-05-16 16:00:00').getTime(),
@@ -50,7 +50,7 @@ const App = () => {
         </section>
       </div>
       <SwiperSlide />
-      <Airdrop address={headerRef?.current?.address} />
+      {/* <Airdrop address={headerRef?.current?.address} /> */}
       <TokenSupply />
       <RoadMap />
       <FooterBox />

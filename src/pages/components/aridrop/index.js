@@ -52,7 +52,7 @@ const Airdrop = (props) => {
         <img alt="claim-ball" className="claim-ball1" src={bg1} />
         <img alt="claim-ball" className="claim-ball2" src={bg2} />
 
-        <div className="claim-title">You can claim AIBALL now!</div>
+        <div className="claim-title">You can claim $AIBALL now!</div>
         <div className="claim-during">
           2023.05.16 09:00(UTC+0)-2023.05.25 09:00(UTC+0)
         </div>
