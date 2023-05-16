@@ -10,7 +10,6 @@ const RoadMap = (props) => {
         "AIBALL NFT Launch",
         "Opensea/Blur Listings",
         "1,000+ Holders",
-        "Get AIBALL NFT with a Bonus Win based on 2023 NBA championship predictions",
       ],
     },
     {
@@ -43,9 +42,15 @@ const RoadMap = (props) => {
             {item.content.map((obj, i) => (
               <div className="card-content" key={`${index}_${i}`}>
                 <img src={ball}></img>
-                <span>{obj}</span>
+                <span className="card-span">{obj}</span>
               </div>
             ))}
+            {
+              index === 0 &&<div className="card-content" key={`${index}_${4}`}>
+              <img src={ball}></img>
+              <span className="card-span">Get AIBALL NFT with a Bonus Win<span>(1 BTC)</span> based on 2023 NBA championship predictions</span>
+            </div>
+            }
           </div>
         ))}
       </div>

@@ -67,6 +67,7 @@ const Tokenomics = (props) => {
   useChart(chartRef, options);
   return (
     <section className="tokenomics" id='tokenomics'>
+      <div className="coming">coming soon</div>
       <div className="title">TOKENOMICS</div>
       <div className="subtitle">
         All jokes aside, here is a rough sketch of $AIBALL path ahead. We dont

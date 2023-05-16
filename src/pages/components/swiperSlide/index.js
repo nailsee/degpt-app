@@ -23,7 +23,7 @@ import nft15 from '@/assets/30nba/Knicks.png';
 import nft16 from '@/assets/30nba/lakers.png';
 import nft17 from '@/assets/30nba/magic.png';
 import nft18 from '@/assets/30nba/Mavericks.png';
-// import nft19 from '@/assets/30nba/nuggets.png';
+import nft19 from '@/assets/30nba/nuggets.png';
 import nft20 from '@/assets/30nba/pistons.png';
 import nft21 from '@/assets/30nba/raptors.png';
 import nft22 from '@/assets/30nba/rockets.png';
@@ -36,7 +36,6 @@ import nft28 from '@/assets/30nba/warriors.png';
 import nft29 from '@/assets/30nba/wizards.png';
 
 import nft30 from '@/assets/30nba/hawks.png';
-import nft19 from '@/assets/30nba/ball19.png';
 
 
 export default function App() {
@@ -56,7 +55,7 @@ export default function App() {
             var slide = slides.eq(i);
             var progress = slides[i].progress;
             slide.transform(""); //清除样式
-            slide.transform("scale(" + (1 - Math.abs(progress) / 8) + ")");
+            slide.transform("scale(" + (1 - Math.abs(progress) / 10) + ")");
           }
         },
         setTransition: function (transition) {

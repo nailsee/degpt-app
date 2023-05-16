@@ -131,7 +131,7 @@ const Header = forwardRef((props, ref) => {
             <li onClick={() => scrollToAnchor("roadmap")}>RoadMap</li>
           </ul>
         </div>
-        <Button type="primary" onClick={handleConnect} className="header-right">
+        <Button type="primary" onClick={handleConnect} className={!address?"header-noConnect":"header-right"}>
           {address ? shortenAddress(address) : "Connect Wallet"}
         </Button>
       </section>
