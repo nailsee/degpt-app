@@ -5,38 +5,37 @@ import Swiper from "swiper/js/swiper.js"; // 引入js
 import "swiper/css/swiper.min.css"; // 引入样式
 import leftIcon from "@/assets/leftIcon.png";
 import rightIcon from "@/assets/rightIcon.png";
-import nft1 from '@/assets/30nba/blazers.png';
-import nft2 from '@/assets/30nba/bucks.png';
-import nft3 from '@/assets/30nba/bulls.png';
-import nft4 from '@/assets/30nba/cavaliers.png';
-import nft5 from '@/assets/30nba/Celtics.png';
-import nft6 from '@/assets/30nba/clippers.png';
-import nft7 from '@/assets/30nba/Frame 16.png';
-import nft8 from '@/assets/30nba/Frame 22.png';
-import nft9 from '@/assets/30nba/Frame 27.png';
-import nft10 from '@/assets/30nba/grizzlies.png';
-import nft11 from '@/assets/30nba/heat.png';
-import nft12 from '@/assets/30nba/hornets.png';
-import nft13 from '@/assets/30nba/Jazz.png';
-import nft14 from '@/assets/30nba/king.png';
-import nft15 from '@/assets/30nba/Knicks.png';
-import nft16 from '@/assets/30nba/lakers.png';
-import nft17 from '@/assets/30nba/magic.png';
-import nft18 from '@/assets/30nba/Mavericks.png';
-import nft19 from '@/assets/30nba/nuggets.png';
-import nft20 from '@/assets/30nba/pistons.png';
-import nft21 from '@/assets/30nba/raptors.png';
-import nft22 from '@/assets/30nba/rockets.png';
-import nft23 from '@/assets/30nba/Sixers.png';
-import nft24 from '@/assets/30nba/spurs.png';
-import nft25 from '@/assets/30nba/suns.png';
-import nft26 from '@/assets/30nba/thunder.png';
-import nft27 from '@/assets/30nba/timberwolves.png';
-import nft28 from '@/assets/30nba/warriors.png';
-import nft29 from '@/assets/30nba/wizards.png';
+import nft1 from "@/assets/30nba/blazers.png";
+import nft2 from "@/assets/30nba/bucks.png";
+import nft3 from "@/assets/30nba/bulls.png";
+import nft4 from "@/assets/30nba/cavaliers.png";
+import nft5 from "@/assets/30nba/Celtics.png";
+import nft6 from "@/assets/30nba/clippers.png";
+import nft7 from "@/assets/30nba/Frame 16.png";
+import nft8 from "@/assets/30nba/Frame 22.png";
+import nft9 from "@/assets/30nba/Frame 27.png";
+import nft10 from "@/assets/30nba/grizzlies.png";
+import nft11 from "@/assets/30nba/heat.png";
+import nft12 from "@/assets/30nba/hornets.png";
+import nft13 from "@/assets/30nba/Jazz.png";
+import nft14 from "@/assets/30nba/king.png";
+import nft15 from "@/assets/30nba/Knicks.png";
+import nft16 from "@/assets/30nba/lakers.png";
+import nft17 from "@/assets/30nba/magic.png";
+import nft18 from "@/assets/30nba/Mavericks.png";
+import nft19 from "@/assets/30nba/nuggets.png";
+import nft20 from "@/assets/30nba/pistons.png";
+import nft21 from "@/assets/30nba/raptors.png";
+import nft22 from "@/assets/30nba/rockets.png";
+import nft23 from "@/assets/30nba/Sixers.png";
+import nft24 from "@/assets/30nba/spurs.png";
+import nft25 from "@/assets/30nba/suns.png";
+import nft26 from "@/assets/30nba/thunder.png";
+import nft27 from "@/assets/30nba/timberwolves.png";
+import nft28 from "@/assets/30nba/warriors.png";
+import nft29 from "@/assets/30nba/wizards.png";
 
-import nft30 from '@/assets/30nba/hawks.png';
-
+import nft30 from "@/assets/30nba/hawks.png";
 
 export default function App() {
   useEffect(() => {
@@ -72,18 +71,48 @@ export default function App() {
     });
   }, []);
   return (
-    <div className="swiper-box">
+    <div className="swiper-box" id="nft">
       <div id="certify">
         <div className="swiper-container">
           <div className="swiper-wrapper">
-            {
-              [nft1,nft2,nft3,nft4,nft5,nft6,nft7,nft8,nft9,nft10,nft30,nft11,nft12,nft13,nft14,nft15,nft16,nft17,nft18,nft19,nft20,nft21,nft22,nft23,nft24,nft25,nft26,nft27,nft28,nft29].map((obj,i)=>{
-                return <div className="swiper-slide" key={i}>
+            {[
+              nft1,
+              nft2,
+              nft3,
+              nft4,
+              nft5,
+              nft6,
+              nft7,
+              nft8,
+              nft9,
+              nft10,
+              nft30,
+              nft11,
+              nft12,
+              nft13,
+              nft14,
+              nft15,
+              nft16,
+              nft17,
+              nft18,
+              nft19,
+              nft20,
+              nft21,
+              nft22,
+              nft23,
+              nft24,
+              nft25,
+              nft26,
+              nft27,
+              nft28,
+              nft29,
+            ].map((obj, i) => {
+              return (
+                <div className="swiper-slide" key={i}>
                   <img alt="" src={obj} />
-                
-              </div>
-              })
-            }
+                </div>
+              );
+            })}
           </div>
         </div>
         <div className="swiper-button-prev">
@@ -92,6 +121,26 @@ export default function App() {
         <div className="swiper-button-next">
           <img src={rightIcon} />
         </div>
+      </div>
+      <div className="swiper-subtitle">
+        AIBALL NFT, a bastketall collection of 30,000 NFTs in 30 teams using AI.
+        <span>1 WBTC</span> will be rewarded to one lucky NFT holder who
+        successfully predicted the 2023 NBA championship team.
+        <br />
+        Rules:
+        <br />
+        1. Winner should hold the NFT corresponding to the 2023 NBA championship
+        team, namely 1000 seeds <br />
+        2. These 1000 seeds will be ranked from 1 to 1000 according to the NFT
+        contract nftid
+        <br />
+        3. When the NBA Finals are over, the remainder of the sum of the total
+        scores of both teams in the finals divided by 1000 is the final lucky
+        number, and the address of the NFT holding the lucky number is the
+        winner address
+        <br />
+        4. One WBTC will be airdropped to the winner address within 2 hours
+        after the end of the 2023 NBA Finals
       </div>
     </div>
   );

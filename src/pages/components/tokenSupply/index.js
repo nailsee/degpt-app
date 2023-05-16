@@ -8,8 +8,8 @@ const Tokenomics = (props) => {
     series: [
       {
         data: [
-          { name: "Liquidity Pool", value: 95 },
-          { name: "Airdrop", value: 5 },
+          { name: "Liquidity Pool", value: 90 },
+          { name: "Airdrop", value: 10 },
         ],
         color: ["#D8210F", "#FCB167"],
         type: "pie",
@@ -81,10 +81,10 @@ const Tokenomics = (props) => {
           <div className="left-desc">
             No Taxes, No Team Reserved, No Bullshit. It’s that simple.
             <br />
-            95% of the tokens were sent to the liquidity pool, LP tokens
+            90% of the tokens were sent to the liquidity pool, LP tokens
             <br /> were burnt, and contract is renounced.
             <br />
-            5% of the tokens were for <span>airdrop</span>.
+            10% of the tokens were for <span>airdrop</span>.
           </div>
         </div>
         {/* echarts */}

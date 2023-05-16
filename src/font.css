@@ -14,3 +14,7 @@
     font-family: 'Noto Sans';
     src: url("./assets/fonts/NotoSans.ttf");
 }
+@font-face{
+    font-family: 'Kanit-BlackItalic';
+    src: url("./assets/fonts/Kanit-BlackItalic.ttf");
+}

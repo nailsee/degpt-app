@@ -32,8 +32,8 @@ const App = () => {
         <section className="banner">
           <img className="basketball" src={basketball} />
           <div className="banner-title">
-            Co-built by AI creatures
-            <br /> and our community
+          Win 1 BTC with 2023 NBA<br /> championship prediction
+           
           </div>
           <Button
             type="primary"
@@ -46,7 +46,10 @@ const App = () => {
           </Button>
           {timeDeadline >= 0 && (
             <div className="countdown">{`${day}d : ${hour}h : ${minute}m : ${second}s`}</div>
-          )}
+          )} 
+           <div className="banner-title banner-subtitle">
+            Co-built by AI creatures and our community
+          </div>
         </section>
       </div>
       <SwiperSlide />
