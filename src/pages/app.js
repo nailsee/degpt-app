@@ -38,8 +38,8 @@ const App = () => {
           <Button
             type="primary"
             onClick={handleMintNft}
-            // style={{cursor: timeDeadline>=0 ? 'not-allowed': 'pointer'}}
-            // disabled={timeDeadline>=0}
+            style={{cursor: timeDeadline>=0 ? 'not-allowed': 'pointer'}}
+            disabled={timeDeadline>=0}
             className="mintNft"
           >
             MINT NFT

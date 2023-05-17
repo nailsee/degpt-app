@@ -17,7 +17,6 @@ const MintModal = forwardRef((props, ref) => {
   const [open, setOpen] = useState(false);
   const [form] = Form.useForm();
   const [loading, setLoading] = useState(false);
-  const [MintedQuantity, setMintedQuantity] = useState();
   const [quantity, setQuantity] = useState({
     minted: "", // 已minted的数据
     totalSupply: "", // 所有数量
@@ -39,8 +38,8 @@ const MintModal = forwardRef((props, ref) => {
       tokenContract.testnet
     );
 
-    let getMintedQuantity = await mintContract.methods
-      .getMintedQuantity(address)
+    let getAllMintedQuantity = await mintContract.methods
+      .getCurrentId()
       .call();
 
     // let getTotalCost = await mintContract.methods
@@ -50,12 +49,11 @@ const MintModal = forwardRef((props, ref) => {
     let totalSupply = await mintContract.methods.totalSupply().call();
 
     setQuantity({
-      minted: getMintedQuantity,
+      minted: getAllMintedQuantity,
       totalSupply: totalSupply,
       total: 0,
     });
 
-    setMintedQuantity(Number(getMintedQuantity));
   };
 
   const hideModal = () => {
@@ -82,7 +80,15 @@ const MintModal = forwardRef((props, ref) => {
         mintNFTAbi,
         tokenContract.testnet
       );
+      let getMintedQuantity = await mintContract.methods
+      .getMintedQuantity(address)
+      .call();
+      if(Number(getMintedQuantity || 0) + Number(values.quantity) > 15) {
+        message.error('current address has exceeded the max limit');
+        setLoading(false);
 
+        return;
+      }
       let getTotalCostNum = await mintContract.methods
         .getTotalCost(values.quantity)
         .call();
@@ -177,8 +183,8 @@ const MintModal = forwardRef((props, ref) => {
                 downIcon: <img src={downIcon} width={15} />,
               }}
               min={1}
-              max={10000}
-              // maxLength={2}
+              max={15}
+              maxLength={2}
               className="inputNumber"
               style={{ width: "95px", color: "#FFF" }}
               onChange={handleChange}
