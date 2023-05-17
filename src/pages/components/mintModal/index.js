@@ -43,25 +43,18 @@ const MintModal = forwardRef((props, ref) => {
       .getMintedQuantity(address)
       .call();
 
-    let getTotalCost = await mintContract.methods
-      .getTotalCost(getMintedQuantity)
-      .call();
+    // let getTotalCost = await mintContract.methods
+    //   .getTotalCost(getMintedQuantity)
+    //   .call();
 
     let totalSupply = await mintContract.methods.totalSupply().call();
 
     setQuantity({
       minted: getMintedQuantity,
       totalSupply: totalSupply,
-      totalCost: getTotalCost,
-      total: Web3.utils.fromWei(String(getTotalCost), "ether"),
+      total: 0,
     });
 
-    console.log({
-      minted: getMintedQuantity,
-      totalSupply: getTotalCost,
-      totalCost: totalSupply,
-      total: Web3.utils.fromWei(String(getTotalCost), "ether"),
-    });
     setMintedQuantity(Number(getMintedQuantity));
   };
 
@@ -90,6 +83,10 @@ const MintModal = forwardRef((props, ref) => {
         tokenContract.testnet
       );
 
+      let getTotalCostNum = await mintContract.methods
+        .getTotalCost(values.quantity)
+        .call();
+
       let isApproved = await mintContract.methods
         .isApprovedForAll(address, tokenContract.testnet)
         .call();
@@ -105,7 +102,7 @@ const MintModal = forwardRef((props, ref) => {
       await mintContract.methods.mint(values.quantity).send({
         from: address,
         gasLimit,
-        value: quantity.totalCost,
+        value: getTotalCostNum,
       });
       message.success("Mint Successful!");
       setLoading(false);
@@ -118,6 +115,24 @@ const MintModal = forwardRef((props, ref) => {
       }
       setLoading(false);
     }
+  };
+  let timeout;
+  const handleChange = async (e) => {
+    clearTimeout(timeout);
+    timeout = setTimeout(async () => {
+      window.web3 = new Web3(window.ethereum);
+      const mintContract = new window.web3.eth.Contract(
+        mintNFTAbi,
+        tokenContract.testnet
+      );
+
+      let getTotalCostNum = await mintContract.methods.getTotalCost(e).call();
+      setQuantity({
+        ...quantity,
+        // totalCost: getTotalCost,
+        total: Web3.utils.fromWei(String(getTotalCostNum), "ether"),
+      });
+    }, 1000);
   };
 
   return (
@@ -140,10 +155,15 @@ const MintModal = forwardRef((props, ref) => {
       closeIcon={<img width={20} src={close} />}
     >
       <div className="public-sale">
-        <span>Price: </span>
+        <span>Price</span>
         <span className="rightValue">{getPrice(quantity.total)}</span>
       </div>
-      <Form name="validate_other" onFinish={onFinish} form={form}>
+      <Form
+        name="validate_other"
+        onFinish={onFinish}
+        form={form}
+        initialValues={{ quantity: 1 }}
+      >
         <div className="amountBox">
           <span className="amountBoxSpan">Amount</span>
           <Form.Item
@@ -157,10 +177,11 @@ const MintModal = forwardRef((props, ref) => {
                 downIcon: <img src={downIcon} width={15} />,
               }}
               min={1}
-              max={15}
-              maxLength={2}
+              max={10000}
+              // maxLength={2}
               className="inputNumber"
               style={{ width: "95px", color: "#FFF" }}
+              onChange={handleChange}
               formatter={(value) =>
                 `${value}`.replace(/\B(?=(\d{3})+(?!\d))/g, ",")
               }

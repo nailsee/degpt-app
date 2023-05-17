@@ -23,5 +23,5 @@ export const netWorkList = {
 }
 export const tokenContract = {
 	mainnet: '',
-	testnet: '0x5ba8050eac5017730c5389f1091617206f470bb8',
+	testnet: '0xF31FF3Ec48Aa82dC5E80282269f40ab7E225F2ab',
 }
