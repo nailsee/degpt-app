@@ -28,7 +28,7 @@ const MintModal = forwardRef((props, ref) => {
       message.warning("Please Connect Wallet");
       return;
     } else if (netWorkList.testnet.chainId !== chainId) {
-      // message.error("Wrong network");
+      message.error("Wrong network");
       handleNetwork()
 
       return;
