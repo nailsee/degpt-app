@@ -13,7 +13,7 @@ import { netWorkList } from "@/utils/constant";
 
 const gasLimit = 3000000;
 const MintModal = forwardRef((props, ref) => {
-  const { address, chainId } = props;
+  const { address, chainId,  handleNetwork } = props;
   const [open, setOpen] = useState(false);
   const [form] = Form.useForm();
   const [loading, setLoading] = useState(false);
@@ -23,11 +23,14 @@ const MintModal = forwardRef((props, ref) => {
     totalCost: "", // 总成本
   });
   const showModal = async () => {
+    console.log(address,'address')
     if (!address) {
       message.warning("Please Connect Wallet");
       return;
     } else if (netWorkList.testnet.chainId !== chainId) {
-      message.error("Wrong network");
+      // message.error("Wrong network");
+      handleNetwork()
+
       return;
     }
     setOpen(true);
@@ -42,16 +45,17 @@ const MintModal = forwardRef((props, ref) => {
       .getCurrentId()
       .call();
 
-    // let getTotalCost = await mintContract.methods
-    //   .getTotalCost(getMintedQuantity)
-    //   .call();
+    let getTotalCost = await mintContract.methods
+      .getTotalCost(1)
+      .call();
 
     let totalSupply = await mintContract.methods.totalSupply().call();
 
     setQuantity({
       minted: getAllMintedQuantity,
       totalSupply: totalSupply,
-      total: 0,
+      total: Web3.utils.fromWei(String(getTotalCost), "ether"),
+      // total: 0,
     });
 
   };
@@ -93,17 +97,17 @@ const MintModal = forwardRef((props, ref) => {
         .getTotalCost(values.quantity)
         .call();
 
-      let isApproved = await mintContract.methods
-        .isApprovedForAll(address, tokenContract.testnet)
-        .call();
-      if (!isApproved) {
-        await mintContract.methods
-          .setApprovalForAll(tokenContract.testnet, true)
-          .send({
-            from: address,
-            gasLimit,
-          });
-      }
+      // let isApproved = await mintContract.methods
+      //   .isApprovedForAll(address, tokenContract.testnet)
+      //   .call();
+      // if (!isApproved) {
+      //   await mintContract.methods
+      //     .setApprovalForAll(tokenContract.testnet, true)
+      //     .send({
+      //       from: address,
+      //       gasLimit,
+      //     });
+      // }
 
       await mintContract.methods.mint(values.quantity).send({
         from: address,

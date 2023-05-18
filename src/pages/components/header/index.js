@@ -24,6 +24,7 @@ const Header = forwardRef((props, ref) => {
       window.ethereum
         .request({ method: "eth_accounts" })
         .then(async (accounts) => {
+          console.log(accounts,'accounts')
           setAddress(accounts[0]);
           checkChainId()
         })
@@ -33,7 +34,7 @@ const Header = forwardRef((props, ref) => {
   const checkChainId = async () => {
     if (window.ethereum) {
       const chainId = await window.ethereum.request({ method: "eth_chainId" });
-      console.log({chainId});
+      // console.log({chainId});
       setChainId(chainId);
     }
   };
@@ -113,7 +114,7 @@ const Header = forwardRef((props, ref) => {
     chainId,
     injectWallet,
   }));
-
+console.log(address,'address423424234')
   return (
     <section className="header">
       <section className="header-center">
